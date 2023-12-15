@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Information Management</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    <style>
+        body {
+            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+        }
+        .ui.container {
+            margin-top: 20px;
+        }
+        .ui.segment {
+            padding: 20px;
+        }
+        .ui.header {
+            margin-top: 0;
+        }
+        .ui.form .field {
+            margin-bottom: 20px;
+        }
+        .ui.message {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="ui container">
+        <div class="ui segment">
+            <div class="ui menu">
+                <a class="active item" id="addEmployee">Add Employee</a>
+                <a class="item" id="editEmployee">Edit Employee</a>
+                <a class="item" id="deleteEmployee">Delete Employee</a>
+            </div>
+        </div>
+        <div class="ui segment">
+            <h2 class="ui header">Employee Information List</h2>
+            <table class="ui celled table" id="employeeList">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Employee ID</th>
+                        <th>Entry Date</th>
+                        <th>Job Position</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <div class="ui segment">
+            <h2 class="ui header">Employee Information Details</h2>
+            <div class="ui form">
+                <div class="field">
+                    <label for="inputEmployeeName">Name</label>
+                    <input type="text" id="inputEmployeeName">
+                </div>
+                <div class="field">
+                    <label for="inputEmployeeId">Employee ID</label>
+                    <input type="text" id="inputEmployeeId">
+                </div>
+                <div class="field">
+                    <label for="inputEntryDate">Entry Date</label>
+                    <input type="text" id="inputEntryDate">
+                </div>
+                <div class="field">
+                    <label for="inputJobPosition">Job Position</label>
+                    <input type="text" id="inputJobPosition">
+                </div>
+                <button class="ui primary button" id="saveEmployee">Save</button>
+                <button class="ui button" id="cancelEmployee">Cancel</button>
+            </div>
+            <div class="ui message" id="message"></div>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+    <script>
+        // Add comments to explain the purpose and functionality of each section of the code
+
+        // Function to add a new employee
+        function addEmployee() {
+            // Get the input values
+            var name = $('#inputEmployeeName').val();
+            var employeeId = $('#inputEmployeeId').val();
+            var entryDate = $('#inputEntryDate').val();
+            var jobPosition = $('#inputJobPosition').val();
+
+            // Validate the input values
+            if (name === '' || employeeId === '' || entryDate === '' || jobPosition === '') {
+                $('#message').text('Please fill in all fields').removeClass('hidden');
+                return;
+            }
+
+            // Create a new row in the employee list table
+            var newRow = $('<tr>');
+            newRow.append($('<td>').text(name));
+            newRow.append($('<td>').text(employeeId));
+            newRow.append($('<td>').text(entryDate));
+            newRow.append($('<td>').text(jobPosition));
+
+            // Append the new row to the table body
+            $('#employeeList tbody').append(newRow);
+
+            // Clear the input fields
+            $('#inputEmployeeName').val('');
+            $('#inputEmployeeId').val('');
+            $('#inputEntryDate').val('');
+            $('#inputJobPosition').val('');
+
+            // Show success message
+            $('#message').text('Employee added successfully').removeClass('hidden');
+        }
+
+        // Event listener for addEmployee button click
+        $('#addEmployee').on('click', function() {
+            // Hide the message
+            $('#message').addClass('hidden');
+
+            // Show the employee details form
+            $('.ui.form').removeClass('hidden');
+
+            // Clear the input fields
+            $('#inputEmployeeName').val('');
+            $('#inputEmployeeId').val('');
+            $('#inputEntryDate').val('');
+            $('#inputJobPosition').val('');
+
+            // Set focus on the first input field
+            $('#inputEmployeeName').focus();
+        });
+
+        // Event listener for saveEmployee button click
+        $('#saveEmployee').on('click', function() {
+            // Hide the message
+            $('#message').addClass('hidden');
+
+            // Add the employee
+            addEmployee();
+        });
+
+        // Event listener for cancelEmployee button click
+        $('#cancelEmployee').on('click', function() {
+            // Hide the message
+            $('#message').addClass('hidden');
+
+            // Hide the employee details form
+            $('.ui.form').addClass('hidden');
+        });
+    </script>
+</body>
+</html>

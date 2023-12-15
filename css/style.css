@@ -1,0 +1,33 @@
+<!-- This file contains custom styles for the employee information management application. -->
+
+<style>
+    body {
+        background-color: #f9f9f9;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Container Styles */
+    .employee-container {
+        margin-top: 20px;
+    }
+
+    /* Segment Styles */
+    .employee-segment {
+        padding: 20px;
+    }
+
+    /* Header Styles */
+    .employee-header {
+        margin-top: 0;
+    }
+
+    /* Form Field Styles */
+    .employee-form-field {
+        margin-bottom: 20px;
+    }
+
+    /* Message Styles */
+    .employee-message {
+        margin-top: 20px;
+    }
+</style>
